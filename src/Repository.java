@@ -20,9 +20,9 @@ public class Repository {
         if (name == null) {
             throw new IllegalArgumentException("Not a Valid Repository Name");
         }
-        Commit<String> name = new LinkedList<String>();
+        Commit<String> name = new LinkedList<>();
     }
-
+s
     // TODO Javadoc and finish
     /**
      * This method will get the name of repository
@@ -38,7 +38,7 @@ public class Repository {
      * @return the head toString representation
      */
     public String getRepoHead(){
-        return head.data;
+        return head.message;
     }
 
     // TODO Javadoc and finish
@@ -48,7 +48,7 @@ public class Repository {
      */
     public int getRepoSize(){
 
-        return 1;
+        return Commit.size;
     }
 
     // TODO Javadoc and finish
@@ -59,12 +59,12 @@ public class Repository {
      */
     public boolean contains(int targetID){
 
-        current = head;
+        Commit current = head;
         for (int i = 0; i < size; i++) {
-            if (current.data = targetID) {
+            if (current.id == targetID) {
                 return true;
             }
-            current = current.next;
+            current = current.past;
         }
         return false;
     }
@@ -91,7 +91,10 @@ public class Repository {
         // check that the targetID exists in repo
         if(contains(targetID) == true)) {
             // continue
-
+            Commit current = head;
+            for (int i = 0; i < size; i++) {
+                current = current.past;
+            }
         }
         else {
             return false;
