@@ -1,6 +1,11 @@
 import java.lang.*;
 import java.util.*;
 
+/**
+ * This class will create a repository as a linked list where you can:
+ * insert, remove, find, history list commits
+ * @author Kevin Nguyen
+ */
 public class Repository {
 
     private String name;
@@ -33,6 +38,9 @@ public class Repository {
      * @return the head toString representation
      */
     public String getRepoHead(){
+        if (head == null) {
+            return "No commits";
+        }
         return head.message;
     }
 
@@ -140,3 +148,181 @@ public class Repository {
        return result;
     }
 }
+
+/*
+Output from Client:
+Welcome to the Mini-Git client program
+Use this program to test your Mini-Git repository methods.
+
+Available repositories:
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: create repo1
+  New repository created: repo1
+
+
+Available repositories:
+	repo1
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: commit repo1
+Enter commit message: First commit!
+  New commit: First commit!
+
+Available repositories:
+	repo1
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: commit repo1
+Enter commit message: Another commit.
+  New commit: Another commit.
+
+Available repositories:
+	repo1
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: history repo1
+How many commits back? 2
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+
+Available repositories:
+	repo1
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: create repo2
+  New repository created: repo2
+
+
+Available repositories:
+	repo2
+
+	repo1
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: commit repo2
+Enter commit message: Commit the third
+  New commit: Commit the third
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: commit repo1
+Enter commit message: Fourth commit
+  New commit: Fourth commit
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: history repo1
+How many commits back? 4
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: head repo1
+Fourth commit
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: commit repo1
+Enter commit message: one more commit
+  New commit: one more commit
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+4 at 2024-05-30 19:06:39 PDT: one more commit
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: contains repo1
+Which id do you want to check? 3
+	Id:3 is in repo1
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+4 at 2024-05-30 19:06:39 PDT: one more commit
+3 at 2024-05-30 19:06:15 PDT: Fourth commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: drop repo1
+Enter ID to drop: 3
+  Successfully dropped 3
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+4 at 2024-05-30 19:06:39 PDT: one more commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+Enter operation and repository: history repo1
+How many commits back? 3
+4 at 2024-05-30 19:06:39 PDT: one more commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+
+Available repositories:
+	repo2
+2 at 2024-05-30 19:06:02 PDT: Commit the third
+
+	repo1
+4 at 2024-05-30 19:06:39 PDT: one more commit
+1 at 2024-05-30 19:05:28 PDT: Another commit.
+0 at 2024-05-30 19:05:17 PDT: First commit!
+
+Operations: [create, head, history, commit, contains, drop, quit]
+ */
